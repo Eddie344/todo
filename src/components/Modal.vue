@@ -55,7 +55,6 @@ export default {
 .modal-default-button
 	float: right
 
-
 .modal-enter
 	opacity: 0
 

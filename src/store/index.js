@@ -17,11 +17,6 @@ export const store = new Vuex.Store({
       id: null,
       title: "",
       todos: []
-    },
-    startEditingNote: {
-      id: null,
-      title: "",
-      todos: []
     }
   },
   plugins: [createPersistedState()],
@@ -59,14 +54,6 @@ export const store = new Vuex.Store({
         title: "",
         todos: []
       };
-    },
-    emptyState(state) {
-      this.replaceState({
-        notes: state.notes,
-        editingNote: state.startEditingNote,
-        newNote: state.newNote,
-        counter: state.counter
-      });
     }
   },
   actions: {
