@@ -1,69 +1,78 @@
 <template>
-  <div class="home">
+  <div class="main">
     <div class="container">
       <div class="top-panel">
-        <button class="btn btn-success">Add note</button>
+        <button class="btn btn-success" @click="$router.push('/create')">Add note</button>
       </div>
       <div class="notes-list">
-        <NotesItem
-          v-for="note in notes"
-          :title="note.title"
-          :todos="note.todos"
-          :key="note.id"
-        ></NotesItem>
+        <div class="empty" v-if="!notes.length">No note created</div>
+        <div class="grid-row">
+          <div class="grid-item" v-for="(note, index) in notes" :key="note.id">
+            <NoteItem :item="note" :index="index" @remove="showRemoveModal($event)"></NoteItem>
+          </div>
+        </div>
       </div>
     </div>
+    <Modal v-if="removeModal">
+      <template v-slot:footer>
+        <button class="btn btn-danger" @click="removeItem">Remove</button>
+        <button class="btn btn-secondary" @click="hideRemoveModal">Cancel</button>
+      </template>
+    </Modal>
   </div>
 </template>
 
 <script>
-import NotesItem from "@/components/NotesItem.vue";
+import NoteItem from "@/components/NoteItem.vue";
+import Modal from "@/components/Modal";
 export default {
   name: "Home",
   components: {
-    NotesItem
+    NoteItem,
+    Modal
   },
   data() {
     return {
-      notes: [
-        {
-          id: 1,
-          title: "Note 1",
-          todos: [
-            {
-              title: "Todo 1"
-            },
-            {
-              title: "Todo 2"
-            }
-          ]
-        },
-        {
-          id: 2,
-          title: "Note 2",
-          todos: [
-            {
-              title: "Todo 1"
-            },
-            {
-              title: "Todo 2"
-            }
-          ]
-        }
-      ]
+      removeModal: false,
+      removindItemId: null
     };
+  },
+  computed: {
+    notes() {
+      return this.$store.getters.getAllNotes;
+    }
+  },
+  methods: {
+    showRemoveModal(index) {
+      this.removeModal = true;
+      this.removindItemIndex = index;
+    },
+    hideRemoveModal() {
+      this.removeModal = false;
+      this.removindItemId = null;
+    },
+    removeItem() {
+      this.$store.dispatch("removeNoteAction", {
+        index: this.removindItemIndex
+      });
+      this.hideRemoveModal();
+    }
   }
 };
 </script>
 
 <style lang="sass" scoped>
-.home
-  padding: 30px 0
-
 .top-panel
-  margin-bottom: 20px
+	margin-bottom: 20px
 
 .notes-list
-  display: flex
-  margin-right: -30px
+	display: flex
+	flex-wrap: wrap
+	margin: 0 -15px
+
+.empty
+	padding: 15px
+	font-style: italic
+	color: $text-muted
+	font-size: 1.1rem
 </style>
