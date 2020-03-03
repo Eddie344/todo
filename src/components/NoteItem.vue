@@ -39,10 +39,10 @@ export default {
       this.uprateEditNote(this.$store.getters.getNote(id));
     },
     uprateEditNote(note) {
-      this.$store.dispatch("setStartEditingNoteAction", {
+      this.$store.commit("setStartEditingNote", {
         note
       });
-      this.$store.dispatch("setEditingNoteAction", {
+      this.$store.commit("setEditingNote", {
         note
       });
     }

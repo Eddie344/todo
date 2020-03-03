@@ -34,15 +34,10 @@ export default {
     this.newNote = this.$store.getters.getNewNote;
     this.newNote.id = this.counter;
   },
-  // computed: {
-  //   newNote() {
-  //     return this.$store.getters.getNewNote;
-  //   }
-  // },
   watch: {
     newNote: {
       handler(newNote) {
-        this.$store.dispatch("setNewNoteAction", {
+        this.$store.commit("setNewNote", {
           newNote
         });
       },

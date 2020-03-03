@@ -73,17 +73,17 @@ export default {
     },
     createNote() {
       if (this.note.title !== "") {
-        this.$store.dispatch("createNoteAction", {
+        this.$store.commit("createNote", {
           note: this.note
         });
-        this.$store.dispatch("clearNewNoteAction");
-        this.$store.dispatch("incrementCounterAction");
+        this.$store.commit("clearNewNote");
+        this.$store.commit("incrementCounter");
         this.$router.push("/");
       }
     },
     editNote() {
       if (this.note.title !== "") {
-        this.$store.dispatch("editNoteAction", {
+        this.$store.commit("editNote", {
           note: this.noteData
         });
         this.$router.push("/");

@@ -56,38 +56,6 @@ export const store = new Vuex.Store({
       };
     }
   },
-  actions: {
-    incrementCounterAction(context) {
-      context.commit("incrementCounter");
-    },
-    removeNoteAction(context, payload) {
-      context.commit("removeNote", payload);
-    },
-    setNewNoteAction(context, payload) {
-      context.commit("setNewNote", payload);
-    },
-    setStartEditingNoteAction(context, payload) {
-      context.commit("setStartEditingNote", payload);
-    },
-    setEditingNoteAction(context, payload) {
-      context.commit("setEditingNote", payload);
-    },
-    createNoteAction(context, payload) {
-      context.commit("createNote", payload);
-    },
-    editNoteAction(context, payload) {
-      context.commit("editNote", payload);
-    },
-    addTodoNewNoteAction(context, payload) {
-      context.commit("addTodoNewNote", payload);
-    },
-    removeTodoNewNoteAction(context, payload) {
-      context.commit("removeTodoNewNote", payload);
-    },
-    clearNewNoteAction(context) {
-      context.commit("clearNewNote");
-    }
-  },
   getters: {
     getCounter(state) {
       return state.counter;

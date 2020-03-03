@@ -41,7 +41,7 @@ export default {
   watch: {
     note: {
       handler() {
-        this.$store.dispatch("setEditingNoteAction", {
+        this.$store.commit("setEditingNote", {
           note: this.note
         });
       },

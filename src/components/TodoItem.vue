@@ -50,9 +50,6 @@ export default {
   },
   methods: {
     removeTodo(index) {
-      // this.$store.dispatch("removeTodoNewNoteAction", {
-      //   index
-      // });
       this.$emit("remove", index);
     },
     editTodo() {

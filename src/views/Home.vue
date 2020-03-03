@@ -52,7 +52,7 @@ export default {
       this.removindItemId = null;
     },
     removeItem() {
-      this.$store.dispatch("removeNoteAction", {
+      this.$store.commit("removeNote", {
         index: this.removindItemIndex
       });
       this.hideRemoveModal();
